@@ -1,0 +1,21 @@
+-- Matei Bianca - Larisa -> 322CB
+
+Pentru implementarea acestui task am folosit algoritmul Floyd-Warshall. Initial,
+am creat matricea distances, folosind functia lungime. Astfel, am creat
+matricea de adiacenta a grafului. Pe diagonala principala am populat matricea
+cu elementul 0 (distanta de la i la i este 0), sub diagonala principala am
+completat cu 10000 (am ales o valoare mare) si in rest am completat cu
+distantele date in input (de exemplu pentru 1 2 3, elementul de pe pozitia
+(1,2) va avea valoarea 3). Pentru a afla costul minim, am implementat
+algoritmul urmator:
+for (k = 1; k <= n; k++)
+  for (i = 1; i <= n; i++)
+    for (j = 1; j <= n; j++)
+      if (dist[i][k] + dist[k][j] < dist[i][j])
+        dist[i][j] = dist[i][k] + dist[k][j];   (Floyd-Warshall),
+
+folosindu-ma de o matrice 3D. Pentru k = 0, avem cazul de baza, adica matricea
+de adiacenta. In final, rezultatul se afla pe ultima coloana de pe prima linie
+(bineinteles, pentru k == n). Pentru a afla calea, am facut cam acelasi lucru,
+doar ca in fiecare celula retin o lista in care am calea prin care am ajuns
+acolo (rezultatul va fi in aceeasi celula).
